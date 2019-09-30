@@ -15,12 +15,12 @@ public class ServiceInterceptor {
 
 	private static Logger logger = Logger.getLogger(ServiceInterceptor.class);
 
-	@Before("execution(* javastudywebapplication.app.core.controller.*.*.*(..))")
+	@Before("execution(* javastudywebapplication.app.core.controller.*.*(..))")
 	public void invokeControllerBefore(JoinPoint joinPoint) {
 		outputLog(joinPoint, true);
 	}
 	
-	@After("execution(* javastudywebapplication.app.core.controller.*.*.*(..))")
+	@After("execution(* javastudywebapplication.app.core.controller.*.*(..))")
 	public void invokeControllerAfter(JoinPoint joinPoint) {
 		outputLog(joinPoint, false);
 	}
