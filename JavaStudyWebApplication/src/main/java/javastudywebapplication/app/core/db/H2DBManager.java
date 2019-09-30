@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import javastudywebapplication.app.domain.Domain;
 import javastudywebapplication.app.domain.DomainFactory;
+import javastudywebapplication.app.domain.User;
 
 /**
  * DBアクセス管理クラス<br>
@@ -108,7 +109,37 @@ public class H2DBManager extends H2DriverAccessor {
 			resultList.add(obj);
 		}
 		return resultList;
+	}
 
+	/**
+	 * SQL(select)を実行する
+	 * 
+	 * @param sql
+	 *            SQL
+	 * @param schema
+	 *            スキーマクラス
+	 * @param binds
+	 *            バインド文字列
+	 * @return 取得結果
+	 * @throws SQLException
+	 *             エラー
+	 */
+	public List<?> executeSelect(String sql, DomainFactory<?> schema, List<String> binds) throws SQLException {
+		PreparedStatement stmt = con.prepareStatement(sql);
+		int bindIdx = 1;
+		for (String bind : binds) {
+			stmt.setString(bindIdx++, bind);
+		}
+		ResultSet rs = stmt.executeQuery();
+		List<Domain> resultList = new ArrayList<Domain>();
+		Domain obj = schema.newInstance();
+		while (rs.next()) {
+			for (int i = 0; i < obj.columnSize(); i++) {
+				obj.set(rs.getString(obj.get(i)), i);
+			}
+			resultList.add(obj);
+		}
+		return resultList;
 	}
 
 	/**
@@ -116,11 +147,22 @@ public class H2DBManager extends H2DriverAccessor {
 	 * 
 	 */
 	private void createUserTable() {
-		String sql = "create table if not exists user(" + "userid varchar(16) PRIMARY KEY NOT NULL,"
+		String createUserTableSql = "create table if not exists user(" + "userid varchar(16) PRIMARY KEY NOT NULL,"
 				+ "usernamekana varchar(64) NOT NULL," + "usernamekanji varchar(64) NOT NULL,"
 				+ "usernameeng varchar(64) NOT NULL," + "password text NOT NULL)";
 		try {
-			executeSql(sql);
+			executeSql(createUserTableSql);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		// 管理者を追加する
+		String selectAdminSql = "select * from user where userid = '9999'";
+		String insertAdimnUserSql = "insert into user values('9999','admin','admin','admin','admin')";
+		try {
+			List<?> userList = executeSelect(selectAdminSql, () -> new User());
+			if(userList == null || userList.size() == 0) {				
+				executeSql(insertAdimnUserSql);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

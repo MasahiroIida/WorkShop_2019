@@ -44,6 +44,7 @@ public class H2DriverAccessor {
 		try {
 			con.close();
 		} catch (Exception ex) {
+			// 握りつぶす
 		}
 	}
 }

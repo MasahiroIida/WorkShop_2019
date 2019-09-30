@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @author iida
  *
  */
-@RestController("/aliveCheck")
+@RestController
 public class AliveCheckController {
 
-	@RequestMapping
+	@RequestMapping("checkAlive")
 	public String aliveCheck() {
 		return "Its alive!!!";
 	}
