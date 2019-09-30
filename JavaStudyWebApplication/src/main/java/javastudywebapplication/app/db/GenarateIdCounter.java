@@ -1,4 +1,4 @@
-package javastudywebapplication.app.core.db;
+package javastudywebapplication.app.db;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

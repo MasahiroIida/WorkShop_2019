@@ -1,4 +1,4 @@
-package javastudywebapplication.app.core.db;
+package javastudywebapplication.app.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -44,6 +44,7 @@ public class H2DriverAccessor {
 		try {
 			con.close();
 		} catch (Exception ex) {
+			// 握りつぶす
 		}
 	}
 }
