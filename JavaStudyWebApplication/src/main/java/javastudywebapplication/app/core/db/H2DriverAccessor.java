@@ -1,4 +1,4 @@
-package javastudywebapplication.app.db;
+package javastudywebapplication.app.core.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

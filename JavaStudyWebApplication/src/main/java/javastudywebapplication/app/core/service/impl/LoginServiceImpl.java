@@ -1,4 +1,4 @@
-package javastudywebapplication.app.service.impl;
+package javastudywebapplication.app.core.service.impl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javastudywebapplication.app.db.UserDao;
+import javastudywebapplication.app.core.db.UserDao;
+import javastudywebapplication.app.core.service.LoginService;
 import javastudywebapplication.app.domain.User;
 import javastudywebapplication.app.response.LoginResponse;
-import javastudywebapplication.app.service.LoginService;
 
 /**
  * ログイン処理を行うサービスの実装クラス

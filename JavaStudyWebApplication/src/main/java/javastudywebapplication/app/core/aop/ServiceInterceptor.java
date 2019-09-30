@@ -1,4 +1,4 @@
-package javastudywebapplication.app.aop;
+package javastudywebapplication.app.core.aop;
 
 import java.util.ArrayList;
 

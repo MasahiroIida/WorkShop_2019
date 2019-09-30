@@ -1,4 +1,4 @@
-package javastudywebapplication.app.controller;
+package javastudywebapplication.app.core.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping("/aliveCheck")
 public class AliveCheckController {
 
+	@RequestMapping("checkAlive")
 	public String aliveCheck() {
 		return "Its alive!!!";
 	}
