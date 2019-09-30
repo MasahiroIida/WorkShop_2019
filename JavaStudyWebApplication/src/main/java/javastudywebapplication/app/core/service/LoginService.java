@@ -1,4 +1,4 @@
-package javastudywebapplication.app.service;
+package javastudywebapplication.app.core.service;
 
 import javastudywebapplication.app.domain.User;
 import javastudywebapplication.app.response.LoginResponse;
